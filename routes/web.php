@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MahasiswaController;
 Route::get('/', function () {
 return view('welcome');
 });
@@ -54,3 +55,14 @@ Route::redirect('/beranda', '/');
 Route::fallback(function () {
 return response('Halaman tidak ditemukan (kustom).', 404);
 });
+
+//Route Mahasiswa Praktikum ke 2
+
+// a. Route Profil
+Route::get('/profil', [MahasiswaController::class, 'profil'])->name('mahasiswa.profil');
+
+// b. Route Daftar Mahasiswa
+Route::get('/mahasiswa', [MahasiswaController::class, 'daftar'])->name('mahasiswa.daftar');
+
+// c. Route Detail Mahasiswa
+Route::get('/mahasiswa/{nim}', [MahasiswaController::class, 'detail'])->name('mahasiswa.detail');

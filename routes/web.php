@@ -2,6 +2,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\MataKuliahController;
+
 Route::get('/', function () {
 return view('welcome');
 });
@@ -10,6 +12,11 @@ return 'Halo, selamat datang di Laravel 13!';
 });
 // Arrow function (lebih ringkas)
 Route::get('/waktu', fn () => now()->format('d-m-Y H:i:s'));
+
+//Route Mata Kuliah
+Route::get('/matakuliah', [MataKuliahController::class, 'index'])->name('matakuliah.index');
+Route::get('/matakuliah/create', [MataKuliahController::class, 'create'])->name('matakuliah.create');
+Route::post('/matakuliah', [MataKuliahController::class, 'store'])->name('matakuliah.store');
 
 //Routing jurusan
 Route::get('/jurusan', [JurusanController::class, 'index']);

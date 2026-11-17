@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\JurusanController;
 Route::get('/', function () {
 return view('welcome');
 });
@@ -9,6 +10,13 @@ return 'Halo, selamat datang di Laravel 13!';
 });
 // Arrow function (lebih ringkas)
 Route::get('/waktu', fn () => now()->format('d-m-Y H:i:s'));
+
+//Routing jurusan
+Route::get('/jurusan', [JurusanController::class, 'index']);
+Route::get('/jurusan', [JurusanController::class, 'index'])->name('jurusan.index');
+Route::get('/jurusan/create', [JurusanController::class, 'create'])->name('jurusan.create');
+Route::post('/jurusan', [JurusanController::class, 'store'])->name('jurusan.store');
+Route::get('/jurusan/{id}', [JurusanController::class, 'show'])->name('jurusan.show');
 
 
 // Parameter wajib
